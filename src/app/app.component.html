@@ -1,7 +1,31 @@
-<app-header />
+<app-header></app-header>
 
-<main>
+<main class="grid-container">
   <ul id="users">
-    <li><app-user /></li>
+    <li>
+      <app-user
+        [user]="users[0]"
+        (select)="onSelectUserCallback($event)"
+      ></app-user> <!-- [avatar]="users[0].avatar": input to child. (select)="onSelectUser($event)": output from child  -->
+    </li>
+    <li>
+      <app-user
+        [user]="users[1]"
+        (select)="onSelectUserCallback($event)"
+      ></app-user>
+    </li>
+    <li>
+      <app-user
+        [user]="users[2]"
+        (select)="onSelectUserCallback($event)"
+      ></app-user>
+    </li>
+    <li>
+      <app-user
+        [user]="users[3]"
+        (select)="onSelectUserCallback($event)"
+      ></app-user>
+    </li>
   </ul>
+  <app-taskdescriptions [description]="description"/>
 </main>
