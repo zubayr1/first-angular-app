@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, computed, input, output } from '@angular/core';
+import { User } from './user.module';
 
 @Component({
   selector: 'app-user',
@@ -10,11 +11,8 @@ import { Component, EventEmitter, Input, Output, computed, input, output } from 
 export class UserComponent {
   // selectedUser = signal(DUMMY_USERS[randomIndex]);
 
-  @Input({required:true}) user!: {
-    id: string,
-    name: string,
-    avatar: string
-  };
+  @Input({required:true}) user!: User
+  @Input({required:true}) selected!: boolean
 
   // @Input({required:true}) name!: string;
   // @Input({required:true}) id!: string;

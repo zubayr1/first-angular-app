@@ -1,2 +1,28 @@
-<h2>Description Selected:</h2>
-<p>{{description}}</p>
+@if(description!="Selected id: ")
+{
+    <h2>Description Selected:</h2>
+    <p>{{description}}</p>
+
+    <menu>
+        <button (click)="onAddTask()">Add task</button>
+
+        <br/>
+
+        @if(isAddingTask)
+        {
+            <app-newtask (isAddingTask)="onCancelAddTaskCallback()" (add)="onAddTaskCallback($event)"/>
+        }
+    </menu>
+
+    @for(task of selectedUserTasks; track task.id) {
+        <li>
+          <app-usertasks
+            [task]="task"
+            (taskid)="onSelecttaskidCallback($event)"
+          ></app-usertasks>
+        </li>
+    }
+}
+@else {
+    <h2>No Description Selected</h2>
+}

@@ -5,27 +5,32 @@ import { UserComponent } from './user/user.component';
 import { DUMMY_USERS } from './dummy-users';
 import { TaskdescriptionsComponent } from './taskdescriptions/taskdescriptions.component';
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, UserComponent, TaskdescriptionsComponent],
+  imports: [
+    RouterOutlet,
+    HeaderComponent,
+    UserComponent,
+    TaskdescriptionsComponent,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'first-angular-app';
   users = DUMMY_USERS;
-  id = "";
+  id = '';
 
-  get description()
-  {
-    return "Selected id: " + this.id;
+  get description() {
+    return 'Selected id: ' + this.id;
   }
 
-  onSelectUserCallback(id:string)
-  {
-    console.log(1);
+  get userId() {
+    return this.users;
+  }
+
+  onSelectUserCallback(id: string) {
     this.id = id;
   }
 }
