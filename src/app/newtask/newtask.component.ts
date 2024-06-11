@@ -12,9 +12,9 @@ export class NewtaskComponent {
   @Output() isAddingTask = new EventEmitter();
   @Output() add = new EventEmitter<{title: string, summary: string, date: string}>();
 
-  enteredTitle = ''
-  enteredSummary = ''
-  enteredDueDate = ''
+  enteredTitle = signal('')
+  enteredSummary = signal('')
+  enteredDueDate = signal('')
 
   onCancel() {
     this.isAddingTask.emit();
@@ -23,9 +23,9 @@ export class NewtaskComponent {
   onSubmit() {
     this.add.emit(
       {
-        title: this.enteredTitle,
-        summary: this.enteredSummary,
-        date: this.enteredDueDate
+        title: this.enteredTitle(),
+        summary: this.enteredSummary(),
+        date: this.enteredDueDate()
       }
     );
   }

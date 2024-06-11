@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
 import { UsertasksComponent } from '../usertasks/usertasks.component';
 import { NewtaskComponent } from '../newtask/newtask.component';
 
@@ -12,14 +12,13 @@ import { NewtaskComponent } from '../newtask/newtask.component';
 export class TaskdescriptionsComponent {
   @Input({required:true}) description!: string;
   @Input({required:true}) userId!: string;
-  isAddingTaskValue = false
 
   get selectedUserTasks()
   {
     return this.tasks.filter((task) => task.userId===this.userId)
   }
 
-  isAddingTask = false
+  isAddingTask = signal(false);
   tasks = [
     {
       id: 't1',
@@ -47,17 +46,17 @@ export class TaskdescriptionsComponent {
   ]
 
   onAddTask() {
-    this.isAddingTask = true
+    this.isAddingTask.set(true)
   }
 
   onAddTaskCallback(taskdata: {title: string, summary: string, date: string})
   {
     this.tasks.push({id: new Date().getTime().toString(), userId: this.userId, title: taskdata.title, summary: taskdata.summary, dueDate: taskdata.date})
-    this.isAddingTask = false
+    this.isAddingTask.set(false)
   }
 
   onCancelAddTaskCallback() {
-    this.isAddingTask = false
+    this.isAddingTask.set(false)
   }
 
   onSelecttaskidCallback(taskid: string)
